@@ -16,29 +16,75 @@ bool balancedSymbols(std::string input ){
 	
 	for(auto it = input.begin(); it != input.end(); ++it){
 		
-                if (*it == '{' || '[' || '(')
+                if (*it == '{' || *it == '[' || *it == '('){
                         myStack.push(*it);
+		}
 
-                if (*it  == '}'|| ']' || ')' && myStack.empty() )
-                        return false;
                 else{
-                        myStack.pop();
-                        if(*it != '}' || ']' || ')')
-                                return false;
+                        if (*it == '}' && myStack.top() == '{'){
+			myStack.pop();
+			}
+			else if (*it == ']' && myStack.top() == '['){
+			myStack.pop();
+			}
+			else if (*it == ')' && myStack.top() == '('){
+			myStack.pop();
+			}
         }
-        if(!myStack.empty())
-                return false;
 }
-return true;
+    if(!myStack.empty()){
+	std::cout << "false" << std::endl;
+	}
 
+std::cout << myStack.size() << std::endl;
+return true;
 }
-//int iTop(std::string input){
-//	std::stack<char, std::deque<char> > stack;
-	
-//	for(auto it = input.begin(); it != input.end(); ++it)
-	
-//return 0;
-//}
+int iTop(std::string input){
+	std::stack<char, std::deque<char> > stack;
+
+	for(auto it = input.begin(); it != input.end(); ++it){
+		if(*it >= 'a' && *it <= 'z'){
+			std::cout << *it << std::endl;
+}
+		else{
+			if (*it == ')'){
+				while(!stack.empty() && stack.top() != '('){
+					std::cout << stack.top() << " ";
+					stack.pop();
+}
+				stack.pop();
+}
+			if (*it == '('){
+				stack.push(*it);
+}
+			if (*it == '*' || *it == '/'){
+				while(!stack.empty() && stack.top() != '+'
+					 && stack.top() != '-' && stack.top() != '('){
+					std::cout<< stack.top() << std::endl;
+					stack.pop();
+}
+				stack.push(*it);
+}
+			if (*it == '+' || *it == '-'){
+				while(!stack.empty() && stack.top() != '('){
+					std::cout<< stack.top() << std::endl;
+					stack.pop();	
+}
+				stack.push(*it);
+}
+}
+		while (!stack.empty()){
+			std::cout<< stack.top() << std::endl;
+			stack.pop();
+}
+	std::cout <<" \n" << std::endl;
+}
+return 0;
+}
 
 int main(int argc, char** argv){
+	balancedSymbols("{{}}");
+	iTop("5+6*7");
+	std::cout << "wow" << std::endl;
+
 }
