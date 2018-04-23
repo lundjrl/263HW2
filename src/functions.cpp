@@ -39,6 +39,7 @@ bool balancedSymbols(std::string input ){
 std::cout << myStack.size() << std::endl;
 return true;
 }
+
 int iTop(std::string input){
 	std::stack<char, std::deque<char> > stack;
 
@@ -83,8 +84,17 @@ return 0;
 }
 
 int main(int argc, char** argv){
+	std::cout << "first" << std::endl;
+	balancedSymbols("[ sahfklb ] [fdas ] (");
+	std::cout << "second" << std::endl;
+	balancedSymbols("[ sahfklb ] { sdc }  ( dvav )");
+	std::cout << "third" << std::endl;
 	balancedSymbols("{{}}");
-	iTop("5+6*7");
-	std::cout << "wow" << std::endl;
 
+	std::cout << "first" << std::endl;
+	iTop("1+2+3");
+	std::cout << "second" << std::endl;
+	iTop("1*3");
+	std::cout << "third" << std::endl;
+	iTop("1+2+3+4");
 }
